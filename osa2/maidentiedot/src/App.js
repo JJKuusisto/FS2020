@@ -2,13 +2,19 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 const api_key = process.env.REACT_APP_API_KEY
 const Single = ({country}) =>{
-  const [weather, setWeather] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [temp, setTemp] = useState('')
+  const [icon, setIcon] = useState('')
+  const [winds, setWinds] = useState('')
+  const [windd, setWindd] = useState('')
   const getWeatherData = async () =>{
     setIsLoading(true)
     const url = 'http://api.weatherstack.com/current?access_key='+ api_key + '&query='+ country[0].capital
     const result = await axios.get(url)
-    setWeather(result.data)
+    setTemp(result.data.current.temperature)
+    setIcon(result.data.current.weather_icons[0])
+    setWinds(result.data.current.wind_speed)
+    setWindd(result.data.current.wind_dir)
     setIsLoading(false)
   }
   useEffect(() =>{
@@ -29,10 +35,10 @@ const Single = ({country}) =>{
       </ul>
       <img src={country[0].flag} height='200' alt={country[0].name}/>
       <h3>Weather in {country[0].capital}</h3>
-      <b>Temperature:</b> {weather.current.temperature} Celcius<br />
-      <img src={weather.current.weather_icons[0]} alt={weather.location.name} /><br />
-      <b>Windspeed: </b> {weather.current.wind_speed} km/h<br />
-      <b>Wind direction</b> {weather.current.wind_dir}<br />
+      <b>Temperature:</b> {temp} Celcius<br />
+      <img src={icon} alt={country[0].capital} /><br />
+      <b>Windspeed: </b> {winds} km/h<br />
+      <b>Wind direction</b> {windd}<br />
     </div>
   )
   )

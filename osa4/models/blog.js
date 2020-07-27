@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+mongoose.set('useFindAndModify', false)
 const blogSchema = mongoose.Schema({
   title: {
     type: String,
@@ -15,7 +15,7 @@ const blogSchema = mongoose.Schema({
     default: 0
   }
 })
-
+ 
 blogSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()

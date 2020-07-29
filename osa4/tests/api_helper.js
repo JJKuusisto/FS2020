@@ -8,6 +8,18 @@ const blogs = [
     { _id: "5a422bc61b54a676234d17fc", title: "Type wars", author: "Robert C. Martin", url: "http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html", likes: 22, __v: 0 }
 ]
 
+users = [
+    {
+        username: "jarmokuu",
+        name: "Jarmo Kuusisto",
+        password: "etarvaa"
+    },
+    {
+        username: "pekkap",
+        name: "Pekka Peloton",
+        password: "1234"
+    }
+]
 const BlogsInDB = async () => {
     const all = await Blog.find({})
     return all.map(blog => blog.toJSON())
@@ -17,5 +29,6 @@ const BlogsInDB = async () => {
 
 module.exports = {
     blogs,
-    BlogsInDB
+    BlogsInDB,
+    users
 }

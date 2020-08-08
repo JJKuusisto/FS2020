@@ -1,9 +1,7 @@
 const { response } = require("../app")
 
-const info = (...params) => {
-  if (process.env.NODE_ENV !== 'test') { 
+const info = (...params) => { 
     console.log(...params)
-  }
 }
 
 const error = (...params) => {

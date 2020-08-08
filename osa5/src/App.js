@@ -117,7 +117,7 @@ const App = () => {
     </div>
   )
 
-  const bloglist = ({ blogs, user, logout }) => {
+  const bloglist = ({ blogs, user, logout}) => {
     const sorted = blogs.sort((a, b) => a.likes < b.likes)
     return (
       <div>
@@ -144,7 +144,7 @@ const App = () => {
         loginForm() :
         <div>
           {newBlogForm()}
-          {bloglist({ blogs, user, logout })}
+          {bloglist({ blogs, user, logout})}
         </div>
       }
     </div>

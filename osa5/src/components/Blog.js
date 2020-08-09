@@ -26,17 +26,17 @@ const Blog = ({ blog, newLike, user, remove }) => {
   return (
     <div style={style} className="blog">
       {blog.title},  {blog.author + ' '}
-      <button onClick={() => setView(!view)}>
+      <button id='view-button' onClick={() => setView(!view)}>
         {view !== false ? 'Hide' : 'View'}
       </button>
       {removable !== false ?
-        <button onClick={remove}>remove</button>
+        <button id='delete-button' onClick={remove}>remove</button>
         : <p></p>
       }
       {view !== false ?
         <div>
           <p>{blog.url}</p>
-          <p>likes {blog.likes} <button onClick={newLike}>like</button></p>
+          <p>likes {blog.likes} <button id='like-button' onClick={newLike}>like</button></p>
           <p>{blog.user.name}</p>
         </div>
         : <p></p>

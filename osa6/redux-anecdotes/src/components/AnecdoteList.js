@@ -8,7 +8,7 @@ const voting = (anecdote, dispatch) => {
   dispatch(notify(`You voted  "${anecdote.content}"`))
   setTimeout(() => {
     dispatch(notify(''))
-  }, 1000)
+  }, 5000)
 }
 const Anecdote = ({ anecdote, handleClick }) => {
   return (

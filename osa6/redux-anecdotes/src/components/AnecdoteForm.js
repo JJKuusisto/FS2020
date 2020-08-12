@@ -13,7 +13,7 @@ const NewAnecdote = (props) => {
     dispatch(notify(`${content} added.`))
     setTimeout(() => {
       dispatch(notify(''))
-    }, 1000)
+    }, 5000)
   }
   return (
     <div>

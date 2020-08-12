@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { addAnecdote } from '../reducers/anecdoteReducer'
+import { notify } from '../reducers/notificationReducer'
 
 const NewAnecdote = (props) => {
   const dispatch = useDispatch()
@@ -9,6 +10,10 @@ const NewAnecdote = (props) => {
     const content = event.target.anecdote.value
     event.target.anecdote.value = ''
     dispatch(addAnecdote(content))
+    dispatch(notify(`${content} added.`))
+    setTimeout(() => {
+      dispatch(notify(''))
+    }, 1000)
   }
   return (
     <div>

@@ -1,7 +1,15 @@
-const noteReducer = (state = [], action) => {
+const initialState = {
+  notes: [
+    { content: 'reducer defines how redux store works', important: true, id: 1 },
+    { content: 'state of store can contain any data', important: false, id: 2 }
+  ],
+  filter: 'IMPORTANT'
+}
+
+const noteReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'NEW_NOTE':
-      return state.concat(action.data)
+      return state.notes.concat(action.data)
     case 'TOGGLE_IMPORTANCE':
       const id = action.data.id
       const noteToChange = state.find(n => n.id === id)

@@ -5,7 +5,7 @@ import { notify } from '../reducers/notificationReducer'
 
 const voting = (anecdote, dispatch) => {
   dispatch(voteAnecdote(anecdote))
-  dispatch(notify(`You voted  "${anecdote.content}"`, 2))
+  dispatch(notify(`You voted  "${anecdote.content}"`, 5))
 }
 const Anecdote = ({ anecdote, handleClick }) => {
   return (

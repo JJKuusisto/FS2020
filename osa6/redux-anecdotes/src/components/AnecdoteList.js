@@ -4,11 +4,8 @@ import { voteAnecdote } from '../reducers/anecdoteReducer'
 import { notify } from '../reducers/notificationReducer'
 
 const voting = (anecdote, dispatch) => {
-  dispatch(voteAnecdote(anecdote.id))
-  dispatch(notify(`You voted  "${anecdote.content}"`))
-  setTimeout(() => {
-    dispatch(notify(''))
-  }, 5000)
+  dispatch(voteAnecdote(anecdote))
+  dispatch(notify(`You voted  "${anecdote.content}"`, 2))
 }
 const Anecdote = ({ anecdote, handleClick }) => {
   return (
@@ -20,11 +17,11 @@ const Anecdote = ({ anecdote, handleClick }) => {
 }
 const AnecdoteList = () => {
   const dispatch = useDispatch()
-  const anecdotes = useSelector(state => {
-    if (state.filter === '') {
-      return state.anecdotes
+  const anecdotes = useSelector(({ filter, anecdotes }) => {
+    if (filter === '') {
+      return anecdotes
     }
-    return state.anecdotes.filter(a => a.content.toLowerCase().includes(state.filter.toLowerCase()))
+    return anecdotes.filter(a => a.content.toLowerCase().includes(filter.toLowerCase()))
   })
   return (
     <ul>

@@ -5,15 +5,12 @@ import { notify } from '../reducers/notificationReducer'
 
 const NewAnecdote = (props) => {
   const dispatch = useDispatch()
-  const add = (event) => {
+  const add = async (event) => {
     event.preventDefault()
     const content = event.target.anecdote.value
     event.target.anecdote.value = ''
     dispatch(addAnecdote(content))
-    dispatch(notify(`${content} added.`))
-    setTimeout(() => {
-      dispatch(notify(''))
-    }, 5000)
+    dispatch(notify(`${content} added.`, 5))
   }
   return (
     <div>

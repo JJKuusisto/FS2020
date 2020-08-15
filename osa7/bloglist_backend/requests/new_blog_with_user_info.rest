@@ -1,0 +1,8 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "title": "new testing post with user info",
+    "author": "Jarmo Kuusisto",
+    "url": "http://jkuusisto.net/testiblogi3"
+}

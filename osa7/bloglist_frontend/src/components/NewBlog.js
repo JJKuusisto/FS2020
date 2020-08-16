@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useField } from '../hooks/index'
 import { notify } from '../reducers/notifyReducer'
 import { newBlog } from '../reducers/blogReducer'
+import { Form, Button } from 'react-bootstrap'
 
 const NewBlog = () => {
   const dispatch = useDispatch()
@@ -31,14 +32,19 @@ const NewBlog = () => {
     url.onReset()
   }
   return (
-    <div className="formDiv">
-      <form onSubmit={addBlog}>
-        title: <input {...title} /><br />
-          author: <input {...author} /><br />
-          url: <input {...url} /><br />
-        <button id='add' type="submit">create</button>
-      </form>
-    </div>
+
+    <Form onSubmit={addBlog}>
+      <Form.Group>
+        <Form.Label>title:</Form.Label>
+        <Form.Control {...title} />
+        <Form.Label>author</Form.Label>
+        <Form.Control {...author} />
+        <Form.Label>url:</Form.Label>
+        <Form.Control {...url} />
+        <Button id='add' type="submit">create</Button>
+      </Form.Group>
+    </Form>
+
   )
 }
 

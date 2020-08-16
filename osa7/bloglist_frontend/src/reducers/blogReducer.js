@@ -31,6 +31,16 @@ export const likeBlog = (content, id) => {
   }
 }
 
+export const commentBlog = (content, id) => {
+  return async dispatch => {
+    const blog = await blogService.addComment(id, content)
+    dispatch({
+      type: 'ADD_COMMENT',
+      data: blog
+    })
+  }
+}
+
 export const deleteBlog = (blog, id) => {
   return async dispatch => {
     if (window.confirm(`You really want to delete "${blog.title}"`)) {
@@ -63,6 +73,15 @@ const blogReducer = (state = [], action) => {
       const newBlogs = state.filter(b => b.id !== action.data)
       console.log(newBlogs)
       return newBlogs
+    }
+    case 'ADD_COMMENT': {
+      const response = action.data
+      const blog = state.find(b => b.id === response.id)
+      const addComment = {
+        ...blog,
+        comments: blog.comments
+      }
+      return state.map(b => b.id !== blog.id ? b : addComment)
     }
     default:
       return state

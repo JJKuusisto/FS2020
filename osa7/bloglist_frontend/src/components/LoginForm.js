@@ -3,11 +3,12 @@ import { useDispatch } from 'react-redux'
 import { logUser } from '../reducers/loginReducer'
 import { useField } from '../hooks/index'
 import { notify } from '../reducers/notifyReducer'
+import { Form, Button } from 'react-bootstrap'
 
 const LoginForm = () => {
   const dispatch = useDispatch()
   const username = useField('text')
-  const password = useField('text')
+  const password = useField('password')
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -20,15 +21,15 @@ const LoginForm = () => {
 
   }
   return (
-    <div>
-      <h2>Log In:</h2>
-      <form onSubmit={handleLogin}>
-        username: <input {...username} />
-        password: <input {...password} />
-
-        <button id="login-button" type="submit">login</button>
-      </form>
-    </div>
+    <Form inline onSubmit={handleLogin}>
+      <Form.Group>
+        <Form.Label>username: </Form.Label>
+        <Form.Control {...username} />
+        <Form.Label>password: </Form.Label>
+        <Form.Control {...password} />
+        <Button variant="primary" id="login-button" type="submit">login</Button>
+      </Form.Group>
+    </Form>
   )
 }
 

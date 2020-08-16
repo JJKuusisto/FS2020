@@ -29,7 +29,7 @@ export const setUser = () => {
   }
 
 }
-const loginReducer = (state = '', action) => {
+const loginReducer = (state = null, action) => {
   switch (action.type) {
     case 'LOGIN':
       return action.data

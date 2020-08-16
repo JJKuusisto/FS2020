@@ -9,6 +9,19 @@ blogsRouter.get('/', async (request, response) => {
   response.json(blogs.map(blog => blog.toJSON()))
 })
 
+blogsRouter.put('/:id/comments', async (request, response, next) => {
+  const body = request.body
+  const updated = {
+    title: body.title,
+    author: body.author,
+    likes: body.likes,
+    url: body.url,
+    comments: body.comments
+  }
+  const updatedBlog = await Blog.findByIdAndUpdate(request.params.id, updated, { new: true }).populate('user', { username: 1, name: 1 })
+  response.json(updatedBlog.toJSON())
+})
+
 blogsRouter.post('/', async (request, response) => {
   const body = request.body
   const decodedToken = jwt.verify(request.token, config.SECRET)

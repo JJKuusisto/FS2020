@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button } from 'react-bootstrap'
 
 const User = ({ user }) => {
 
@@ -8,9 +9,9 @@ const User = ({ user }) => {
   }
 
   return (
-    <div>
-      {user.name} has logged in <button type="submit" onClick={logout}>logout</button>
-    </div>
+    <span>
+      {user.name}  has logged in <Button type="submit" onClick={logout}>logout</Button>
+    </span>
   )
 }
 

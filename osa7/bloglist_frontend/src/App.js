@@ -81,7 +81,6 @@ const App = () => {
           }
         </Route>
         <Route path="/users">
-          <h2>Users</h2>
           <UserList />
         </Route>
         <Route path="/">

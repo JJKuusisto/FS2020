@@ -1,9 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { Table } from 'react-bootstrap'
 
 const UserDetails = ({ id }) => {
   const user = useSelector(state => state.users.find(u => u.id === id))
-  console.log(user)
   if (!user) {
     return null
   }
@@ -11,9 +11,11 @@ const UserDetails = ({ id }) => {
   return (
     <div>
       <h2 className="m-3">{user.name}</h2>
-      <ul>
-        {user.blogs.map(b => <li className="disabled" key={b.id}>{b.title}</li>)}
-      </ul>
+      <Table striped>
+        <tbody>
+          {user.blogs.map(b => <tr key={b.id}><td>{b.title}</td></tr>)}
+        </tbody>
+      </Table>
     </div>
   )
 }

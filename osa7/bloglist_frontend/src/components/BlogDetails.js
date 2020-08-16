@@ -33,21 +33,24 @@ const BlogDetails = ({ id }) => {
 
   return (
     <div>
-      <h3 className="m-2 p-2 bg-dark text-light">{blog.title}, {blog.author}</h3>
-      <div>
-        <span className="m-2 d-block"><a href={blog.url} >{blog.url}</a></span>
-        <span className="m-2 d-block">
+      <h3 className="mt-3 p-2 bg-secondary text-light">{blog.title}, {blog.author}</h3>
+      <div className="p-2">
+        <span className="m-2 d-block text-lg-left"><a href={blog.url} >{blog.url}</a></span>
+        <span className="m-2 d-block text-lg-left">
           {blog.likes} likes <Button onClick={() => newLike(blog)}>like</Button>
           {user.username === blog.user.username
             ? <Button className="ml-1" onClick={() => removeBlog(blog)}>delete</Button>
             : <p></p>
           }
         </span>
+        <span>added by: <span className="font-weight-bold font-italic">{blog.user.name}</span></span>
       </div>
-      <span>added by: <span className="font-weight-bold font-italic">{blog.user.name}</span></span>
       <h3 className="mt-4">comments</h3>
-      <Form className="inline d-block" onSubmit={newComment}>
-        <Form.Control className="m-1" {...comment} /><Button type="submit">add comment</Button>
+      <Form className="d-block w-100" onSubmit={newComment}>
+        <Form.Group>
+          <Form.Control className="m-1" {...comment} />
+          <Button className="m-1" type="submit">add comment</Button>
+        </Form.Group>
       </Form>
       <ul className="list-unstyled">
         {blog.comments.map((c, i) =>
